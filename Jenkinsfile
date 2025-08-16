@@ -11,12 +11,12 @@ pipeline {
         SCANNER_HOME= tool 'sonar-scanner'
     }
 
-    stages {
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }
+    // stages {
+    //     stage('Clean Workspace') {
+    //         steps {
+    //             cleanWs()
+    //         }
+    //     }
         
         stage('Checkout from GITHUB') {
             steps {
@@ -46,15 +46,15 @@ pipeline {
         }
     }
     
-     post {
-     always {
-        emailext attachLog: true,
-            subject: "'${currentBuild.result}'",
-            body: "Project: ${env.JOB_NAME}<br/>" +
-                "Build Number: ${env.BUILD_NUMBER}<br/>" +
-                "URL: ${env.BUILD_URL}<br/>",
-            to: 'postbox.aj99@gmail.com',
-            attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
-        }
-    }
-}
+    //  post {
+    //  always {
+    //     emailext attachLog: true,
+    //         subject: "'${currentBuild.result}'",
+    //         body: "Project: ${env.JOB_NAME}<br/>" +
+    //             "Build Number: ${env.BUILD_NUMBER}<br/>" +
+    //             "URL: ${env.BUILD_URL}<br/>",
+    //         to: 'postbox.aj99@gmail.com',
+    //         attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
+    //     }
+    // }
+// }
