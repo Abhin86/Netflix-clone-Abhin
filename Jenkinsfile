@@ -20,7 +20,7 @@ pipeline {
         
         stage('Checkout from GITHUB') {
             steps {
-                git branch: 'main', url: 'https://github.com/cloudezigns/Netflix-clone.git'
+                git branch: 'main', url: 'https://github.com/Abhin86/Netflix-clone-Abhin.git'
             }
         }
         
