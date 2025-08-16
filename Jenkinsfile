@@ -38,6 +38,19 @@ pipeline {
                 waitForQualityGate abortPipeline: false, credentialsId: 'token1'
             }
         }
+
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.txt"
+            }
+        }
         
         stage('Install NodeJs Dependencies') {
             steps {
