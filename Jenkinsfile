@@ -27,7 +27,7 @@ pipeline {
         stage('SonarQube Scan Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Netflix \
+                    sh ''' $SCANNER_HOME/bin/sonarqube -Dsonar.projectName=Netflix \
                     -Dsonar.projectKey=Netflix '''
                 }
            }
@@ -35,7 +35,7 @@ pipeline {
         
         stage('Quality Gate') {
             steps {
-                waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                waitForQualityGate abortPipeline: false, credentialsId: 'token1'
             }
         }
         
